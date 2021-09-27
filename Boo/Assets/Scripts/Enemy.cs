@@ -5,7 +5,6 @@ using UnityEngine;
 public class Enemy : Movement
 {
     // Fields for Enemy
-    public GameObject player;
     public List<Vector3> path;
     int pathIndex;
     bool pathReversed;
@@ -71,6 +70,9 @@ public class Enemy : Movement
                 }
             }
         }
+
+        // Check if the player is in front
+        DetectPlayer();
 
         base.Update();
     }

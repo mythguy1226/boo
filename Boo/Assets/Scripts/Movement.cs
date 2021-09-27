@@ -8,6 +8,7 @@ public abstract class Movement : MonoBehaviour
     protected Vector3 position;
     protected Vector3 direction;
     protected Vector3 velocity;
+    public GameObject player;
 
     [Min(0.0001f)]
     public float mass = 1;
@@ -27,12 +28,17 @@ public abstract class Movement : MonoBehaviour
     {
         CalculateSteeringForces();
 
+        // Position will change depending on velocity
         position += velocity * Time.deltaTime;
 
+        // Change the Sprite's Position
         transform.position = position;
 
         // Grab our current direction from velocity
         direction = velocity.normalized;
+
+        // Make the Sprite look at the direction
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
     }
 
     // Method for applying forces on an object
@@ -63,6 +69,28 @@ public abstract class Movement : MonoBehaviour
     {
         // Return the seek steering force
         return Seek(target.transform.position);
+    }
+
+    // Method used to avoid obstacles
+    public void DetectPlayer()
+    {
+
+        // Check if the player is in front of the enemy
+        Vector3 plrPos = player.transform.position;
+        Vector3 eToP = plrPos - transform.position;
+        eToP.Normalize();
+        float dotProd = Vector3.Dot(eToP, direction);
+
+        // If the player is in front of the enemy then attack
+        if (dotProd > 0)
+        {
+            // Calculate the FOV
+            float angle = Vector3.Angle(direction, eToP);
+            if (angle < 30 || Vector3.Distance(plrPos, transform.position) < 5)
+            {
+                Debug.Log("Player Detected!");
+            }
+        }
     }
 
     // Abstract Method for Calculating the Steering Forces
