@@ -8,6 +8,7 @@ public class Enemy : Movement
     public List<Vector3> path;
     int pathIndex;
     bool pathReversed;
+    bool canShoot;
 
     // Method at start
     protected override void Start()
@@ -15,6 +16,7 @@ public class Enemy : Movement
         // Init fields
         pathIndex = 0;
         pathReversed = false;
+        canShoot = true;
         base.Start();
     }
 
@@ -72,8 +74,35 @@ public class Enemy : Movement
         }
 
         // Check if the player is in front
-        DetectPlayer();
+        if(DetectPlayer())
+        {
+            // If player is detected check if the enemy can shoot
+            if (canShoot)
+            {
+                Instantiate(stake, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+                canShoot = false;
+                Invoke("SetCanShoot", 1.0f); // Cooldown for shooting
+            }
+        }
 
         base.Update();
+    }
+
+    // Getter method for human's direction
+    public Vector3 GetDirection()
+    {
+        return direction;
+    }
+
+    // Getter method for human's velocity
+    public Vector3 GetVelocity()
+    {
+        return velocity;
+    }
+
+    // Method that sets the enemy able to shoot
+    public void SetCanShoot()
+    {
+        canShoot = true;
     }
 }
