@@ -85,6 +85,11 @@ public class Enemy : Movement
             }
         }
 
+        // Collisions with player
+        if(detector.CircleCollision(player, gameObject))
+        {
+            Destroy(gameObject);
+        }
         base.Update();
     }
 

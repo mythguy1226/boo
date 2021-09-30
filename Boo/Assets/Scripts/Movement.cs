@@ -15,6 +15,9 @@ public abstract class Movement : MonoBehaviour
     public float mass = 1;
     public float maxSpeed = 10;
 
+    // Field for collision detector
+    protected CollisionDetection detector;
+
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -22,6 +25,8 @@ public abstract class Movement : MonoBehaviour
         position = transform.position;
         direction = Vector3.right;
         velocity = Vector3.zero;
+
+        detector = GetComponent<CollisionDetection>();
     }
 
     // Update is called once per frame
@@ -94,6 +99,7 @@ public abstract class Movement : MonoBehaviour
         }
         return false;
     }
+
 
     // Abstract Method for Calculating the Steering Forces
     protected abstract void CalculateSteeringForces();
