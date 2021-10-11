@@ -10,6 +10,7 @@ public abstract class Movement : MonoBehaviour
     protected Vector3 velocity;
     public GameObject player;
     public GameObject stake;
+    public List<GameObject> obstacles;
 
     [Min(0.0001f)]
     public float mass = 1;
@@ -92,14 +93,40 @@ public abstract class Movement : MonoBehaviour
         {
             // Calculate the FOV
             float angle = Vector3.Angle(direction, eToP);
-            if (angle < 30 || Vector3.Distance(plrPos, transform.position) < 5)
+            if (angle < 30 && Vector3.Distance(plrPos, transform.position) < 7)
             {
-                return true;
+                // Check if there are obstacles between the enemy and the player
+                if(!DetectObstacles())
+                {
+                    return true;
+                }
             }
         }
         return false;
     }
 
+    // Method that checks if there are obstacles between enemy and player
+    public bool DetectObstacles()
+    {
+        // Iterate through all obstacles
+        foreach (GameObject obstacle in obstacles)
+        {
+            // Check the distance at each point along the FOV radius
+            for (int i = 0; i < 7; i++)
+            {
+                // Check if an obstacle is detected
+                if (Vector3.Distance(obstacle.transform.position, position + direction * i) < 1.0f)
+                {
+                    // Check if the obstacle is between the enemy and the player
+                    if(Vector3.Distance(obstacle.transform.position, position) < Vector3.Distance(player.transform.position, position))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
 
     // Abstract Method for Calculating the Steering Forces
     protected abstract void CalculateSteeringForces();

@@ -10,6 +10,9 @@ public class Enemy : Movement
     bool pathReversed;
     bool canShoot;
 
+    // Material Fields
+    public Material material1;
+
     // Method at start
     protected override void Start()
     {
@@ -28,7 +31,7 @@ public class Enemy : Movement
 
         // Make the enemy move towards the first coordinate of the path
         // if a path exists
-        if(path.Count > 0)
+        if (path.Count > 0)
         {
             ultimateForce += Seek(path[pathIndex]);
         }
@@ -41,13 +44,13 @@ public class Enemy : Movement
     protected override void Update()
     {
         // Check if the enemy has reached one of its paths
-        if(Vector3.Distance(transform.position, path[pathIndex]) <= 0.1f)
+        if (Vector3.Distance(transform.position, path[pathIndex]) <= 0.1f)
         {
             // If the path is reversed then subtract from index
             // if at end of path then reverse direction again
-            if(pathReversed)
+            if (pathReversed)
             {
-                if(pathIndex - 1 >= 0)
+                if (pathIndex - 1 >= 0)
                 {
                     pathIndex--;
                 }
@@ -72,9 +75,9 @@ public class Enemy : Movement
                 }
             }
         }
-
+        
         // Check if the player is in front
-        if(DetectPlayer())
+        if (DetectPlayer())
         {
             // If player is detected check if the enemy can shoot
             if (canShoot)
@@ -87,7 +90,7 @@ public class Enemy : Movement
         }
 
         // Collisions with player
-        if(detector.CircleCollision(player, gameObject))
+        if (detector.CircleCollision(player, gameObject))
         {
             //Destroy(gameObject);
         }
@@ -110,5 +113,37 @@ public class Enemy : Movement
     public void SetCanShoot()
     {
         canShoot = true;
+    }
+
+    // Method for Displaying the Enemy's FOV
+    void OnRenderObject()
+    {
+        Vector3 plrPos = GetComponent<Movement>().player.transform.position;
+        Vector3 eToP = plrPos - transform.position;
+        
+
+        // Pass in Material to Render
+        material1.SetPass(0);
+
+        // Left Line
+        GL.Begin(GL.LINES);
+        GL.Vertex(position);
+        GL.Color(Color.yellow);
+        GL.Vertex(position + (Quaternion.AngleAxis(30, Vector3.forward) * direction) * 7);
+        GL.Color(Color.yellow);
+        GL.End();
+
+        // Right Line
+        GL.Begin(GL.LINES);
+        GL.Vertex(position);
+        GL.Vertex(position + (Quaternion.AngleAxis(-30, Vector3.forward) * direction) * 7);
+        GL.End();
+
+        // Arc
+        GL.Begin(GL.LINE_STRIP);
+        GL.Vertex(position + (Quaternion.AngleAxis(30, Vector3.forward) * direction) * 7);
+        GL.Vertex(position + direction * 7);
+        GL.Vertex(position + (Quaternion.AngleAxis(-30, Vector3.forward) * direction) * 7);
+        GL.End();
     }
 }
