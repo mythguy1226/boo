@@ -8,10 +8,12 @@ public class Player_Movement : MonoBehaviour
     public float speed = 3.0f;
     public Vector3 direction = Vector3.zero;
 
+    Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -25,28 +27,36 @@ public class Player_Movement : MonoBehaviour
         {
             transform.Translate(Vector3.up * speed * Time.deltaTime);
             direction = Vector3.up;
+            animator.SetBool("is_up", true);
         }
+        else animator.SetBool("is_up", false);
 
         // Moves Down
         if (Input.GetKey(KeyCode.DownArrow))
         {
             transform.Translate(-Vector3.up * speed * Time.deltaTime);
             direction = -Vector3.up;
+            animator.SetBool("is_down", true);
         }
+        else animator.SetBool("is_down", false);
 
         // Moves Right
         if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.Translate(Vector3.right * speed * Time.deltaTime);
             direction = Vector3.right;
+            animator.SetBool("is_right", true);
         }
+        else animator.SetBool("is_right", false);
 
         // Moves Left
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Translate(-Vector3.right * speed * Time.deltaTime);
             direction = -Vector3.right;
+            animator.SetBool("is_left", true);
         }
+        else animator.SetBool("is_left", false);
 
         // Get the player sprite bounds
         Vector3 vampMax = gameObject.GetComponent<SpriteRenderer>().bounds.max;
