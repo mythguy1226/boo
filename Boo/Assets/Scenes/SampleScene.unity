@@ -127,6 +127,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7276276371784924879}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &143315455 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7276276371641610033, guid: 37f91746461ece24ba7d2390099b97b3,
+    type: 3}
+  m_PrefabInstance: {fileID: 7276276371784924879}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &143315457
 Animator:
   serializedVersion: 3
@@ -146,6 +152,25 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &143315458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143315453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea89d5b6ab80cfd43998a641f457aac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objects:
+  - {fileID: 143315455}
+  - {fileID: 1976140962}
+  - {fileID: 1076099680}
+  checkMethod: 0
+  obstacles:
+  - {fileID: 564263770}
 --- !u!1 &228035196
 GameObject:
   m_ObjectHideFlags: 0
@@ -1930,6 +1955,12 @@ Tilemap:
 --- !u!1 &1076099678 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1428971629281044035, guid: b4110cd7bd17db04c9a12fabc790d245,
+    type: 3}
+  m_PrefabInstance: {fileID: 675564638}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1076099680 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1428971629281044034, guid: b4110cd7bd17db04c9a12fabc790d245,
     type: 3}
   m_PrefabInstance: {fileID: 675564638}
   m_PrefabAsset: {fileID: 0}
@@ -8910,6 +8941,12 @@ Tilemap:
 --- !u!1 &1976140960 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1428971629281044035, guid: b4110cd7bd17db04c9a12fabc790d245,
+    type: 3}
+  m_PrefabInstance: {fileID: 1428971628795080133}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1976140962 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1428971629281044034, guid: b4110cd7bd17db04c9a12fabc790d245,
     type: 3}
   m_PrefabInstance: {fileID: 1428971628795080133}
   m_PrefabAsset: {fileID: 0}
