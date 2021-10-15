@@ -68,15 +68,30 @@ public class Vampire_Collision : MonoBehaviour
             Vector3 obstMin = obstacle.GetComponent<SpriteRenderer>().bounds.min;
             Vector3 vampMax = gameObject.GetComponent<SpriteRenderer>().bounds.max;
             Vector3 vampMin = gameObject.GetComponent<SpriteRenderer>().bounds.min;
-
+            Vector3 vampExtents = gameObject.GetComponent<SpriteRenderer>().bounds.extents;
             // If there is collision stop the player from moving into the obstacle
             if (obstMin.x < vampMax.x &&
                 obstMax.x > vampMin.x &&
                 obstMax.y > vampMin.y &&
                 obstMin.y < vampMax.y)
             {
-                // Move the Player in the opposite direction they are trying to do
-                gameObject.transform.Translate(-direction * (speed + 0.5f) * Time.deltaTime);
+                // Keep the player from crossing the bounds of the obstacle
+                if(direction.x == -1) // Left Side
+                {
+                    gameObject.transform.position = new Vector3(obstMax.x + vampExtents.x, gameObject.transform.position.y, gameObject.transform.position.z);
+                }
+                else if (direction.x == 1) // Right Side
+                {
+                    gameObject.transform.position = new Vector3(obstMin.x - vampExtents.x, gameObject.transform.position.y, gameObject.transform.position.z);
+                }
+                else if(direction.y == 1) // Bottom
+                {
+                    gameObject.transform.position = new Vector3(gameObject.transform.position.x, obstMin.y - vampExtents.y, gameObject.transform.position.z);
+                }
+                else if (direction.y == -1) // Top
+                {
+                    gameObject.transform.position = new Vector3(gameObject.transform.position.x, obstMax.y + vampExtents.y, gameObject.transform.position.z);
+                }
             }
         }
     }
