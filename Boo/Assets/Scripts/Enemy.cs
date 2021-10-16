@@ -84,6 +84,7 @@ public class Enemy : Movement
             {
                 GameObject stakeObject = Instantiate(stake, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
                 stakeObject.GetComponent<Stake>().player = player;
+                stakeObject.GetComponent<Stake>().manager = GameManager.manager;
                 canShoot = false;
                 Invoke("SetCanShoot", 1.0f); // Cooldown for shooting
             }

@@ -7,6 +7,7 @@ public class Player_Movement : MonoBehaviour
     // Fields
     public float speed = 3.0f;
     public Vector3 direction = Vector3.zero;
+    public Vector3 startPos;
 
     Animator animator;
 
