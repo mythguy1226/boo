@@ -12,6 +12,7 @@ public class Stake : MonoBehaviour
     private float speed = 6.0f;
     public CollisionDetection detector;
     public GameObject manager;
+
     // Start is called before the first frame update
     void Start()
     {

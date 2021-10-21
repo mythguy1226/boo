@@ -8,10 +8,12 @@ public class GameManager : MonoBehaviour
     public int lives = 3;
     public GameObject player;
     public static GameObject manager;
+    [SerializeField] UI_Health hSystem;
     // Start is called before the first frame update
     void Start()
     {
         manager = gameObject;
+        hSystem.DrawHearts(3, 3);
     }
 
     // Update is called once per frame
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviour
     {
         // Subtract the amount of lives
         lives--;
+        hSystem.DrawHearts(lives, 3);
 
         // Send the player back to the beginning of the level
         Vector3 startPos = player.GetComponent<Player_Movement>().startPos;
