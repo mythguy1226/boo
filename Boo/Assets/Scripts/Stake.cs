@@ -10,14 +10,11 @@ public class Stake : MonoBehaviour
     private Vector3 stakePosition;
     private Vector3 velocity;
     private float speed = 6.0f;
-    public CollisionDetection detector;
     public GameObject manager;
 
     // Start is called before the first frame update
     void Start()
     {
-        // Init Collision detector and manager
-        detector = GetComponent<CollisionDetection>();
         // Lifetime of the stake is only two seconds
         Destroy(gameObject, 2.0f);
 
@@ -37,13 +34,24 @@ public class Stake : MonoBehaviour
         stakePosition += velocity;
 
         transform.position = stakePosition;
+    }
 
-        // Check if the stake hits a player
-        if(detector.CircleCollision(gameObject, player))
+    // Handle Stake Collisions
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Handle Player Collisions
+        if(collision.collider.name.Contains("Player"))
         {
-            // Destroy the stake and respawn the player
+            // Destroy the Stake and Respawn the Player
             Destroy(gameObject);
             manager.GetComponent<GameManager>().Respawn();
+        }
+
+        // Handle Obstacle Collisions
+        if (collision.collider.name.Contains("Obstacle"))
+        {
+            // Destroy the Stake
+            Destroy(gameObject);
         }
     }
 }
