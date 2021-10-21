@@ -82,18 +82,12 @@ public class Enemy : Movement
             // If player is detected check if the enemy can shoot
             if (canShoot)
             {
-                GameObject stakeObject = Instantiate(stake, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+                GameObject stakeObject = Instantiate(stake, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                 stakeObject.GetComponent<Stake>().player = player;
                 stakeObject.GetComponent<Stake>().manager = GameManager.manager;
                 canShoot = false;
                 Invoke("SetCanShoot", 1.0f); // Cooldown for shooting
             }
-        }
-
-        // Collisions with player
-        if (detector.CircleCollision(player, gameObject))
-        {
-            //Destroy(gameObject);
         }
         base.Update();
     }

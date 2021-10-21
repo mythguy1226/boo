@@ -10,14 +10,10 @@ public abstract class Movement : MonoBehaviour
     protected Vector3 velocity;
     public GameObject player;
     public GameObject stake;
-    public List<GameObject> obstacles;
 
     [Min(0.0001f)]
     public float mass = 1;
     public float maxSpeed = 10;
-
-    // Field for collision detector
-    protected CollisionDetection detector;
 
 
     // Start is called before the first frame update
@@ -26,8 +22,6 @@ public abstract class Movement : MonoBehaviour
         position = transform.position;
         direction = Vector3.right;
         velocity = Vector3.zero;
-
-        detector = GetComponent<CollisionDetection>();
     }
 
     // Update is called once per frame
@@ -108,21 +102,15 @@ public abstract class Movement : MonoBehaviour
     // Method that checks if there are obstacles between enemy and player
     public bool DetectObstacles()
     {
-        // Iterate through all obstacles
-        foreach (GameObject obstacle in obstacles)
+        // Cast a Ray in the direction of the enemy
+        int layerMask = LayerMask.GetMask("Obstacle");
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 7.0f, layerMask);
+        if (hit.collider != null && hit.transform.gameObject != gameObject)
         {
-            // Check the distance at each point along the FOV radius
-            for (int i = 0; i < 7; i++)
+            // If the ray hits an obstacle return true
+            if (hit.collider.name.Contains("Obstacle"))
             {
-                // Check if an obstacle is detected
-                if (Vector3.Distance(obstacle.transform.position, position + direction * i) < 1.0f)
-                {
-                    // Check if the obstacle is between the enemy and the player
-                    if(Vector3.Distance(obstacle.transform.position, position) < Vector3.Distance(player.transform.position, position))
-                    {
-                        return true;
-                    }
-                }
+                return true;
             }
         }
         return false;

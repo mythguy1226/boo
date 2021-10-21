@@ -14,16 +14,9 @@ public class Vampire_Collision : MonoBehaviour
 
     public CollisionCheckMethod checkMethod;
 
-    // Fields for checking obstacle collisions
-    public List<GameObject> obstacles;
-    Vector3 direction;
-    float speed;
-
     // Update is called once per frame
     void Update()
     {
-        direction = GetComponent<Player_Movement>().direction;
-        speed = GetComponent<Player_Movement>().speed;
         bool isPlayerHit = false;
 
         // Remove If statement and else statement to have collision automatically detected among objects
@@ -59,41 +52,6 @@ public class Vampire_Collision : MonoBehaviour
         {
             objects[0].color = Color.white;
         }
-
-        // Check Collisions for Obstacles and dont let the player walk through them
-        foreach (GameObject obstacle in obstacles)
-        {
-            // Get the bounds for each object
-            Vector3 obstMax = obstacle.GetComponent<SpriteRenderer>().bounds.max;
-            Vector3 obstMin = obstacle.GetComponent<SpriteRenderer>().bounds.min;
-            Vector3 vampMax = gameObject.GetComponent<SpriteRenderer>().bounds.max;
-            Vector3 vampMin = gameObject.GetComponent<SpriteRenderer>().bounds.min;
-            Vector3 vampExtents = gameObject.GetComponent<SpriteRenderer>().bounds.extents;
-            // If there is collision stop the player from moving into the obstacle
-            if (obstMin.x < vampMax.x &&
-                obstMax.x > vampMin.x &&
-                obstMax.y > vampMin.y &&
-                obstMin.y < vampMax.y)
-            {
-                // Keep the player from crossing the bounds of the obstacle
-                if(direction.x == -1) // Left Side
-                {
-                    gameObject.transform.position = new Vector3(obstMax.x + vampExtents.x, gameObject.transform.position.y, gameObject.transform.position.z);
-                }
-                else if (direction.x == 1) // Right Side
-                {
-                    gameObject.transform.position = new Vector3(obstMin.x - vampExtents.x, gameObject.transform.position.y, gameObject.transform.position.z);
-                }
-                else if(direction.y == 1) // Bottom
-                {
-                    gameObject.transform.position = new Vector3(gameObject.transform.position.x, obstMin.y - vampExtents.y, gameObject.transform.position.z);
-                }
-                else if (direction.y == -1) // Top
-                {
-                    gameObject.transform.position = new Vector3(gameObject.transform.position.x, obstMax.y + vampExtents.y, gameObject.transform.position.z);
-                }
-            }
-        }
     }
 
     bool CheckForCollision(SpriteRenderer objA, SpriteRenderer objB, CollisionCheckMethod collisionCheck)
@@ -116,5 +74,20 @@ public class Vampire_Collision : MonoBehaviour
         }
 
         return isHitting;
+    }
+
+    // Handle Vampire Collisions
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        // Handle Enemy Collisions
+        if (collision.collider.name.Contains("Enemy"))
+        {
+            // Get Attack Input
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                // Destroy the Enemy
+                Destroy(collision.gameObject);
+            }
+        }
     }
 }
