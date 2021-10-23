@@ -14,6 +14,13 @@ public class Vampire_Collision : MonoBehaviour
 
     public CollisionCheckMethod checkMethod;
 
+    Animator animator;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -22,6 +29,7 @@ public class Vampire_Collision : MonoBehaviour
         // Remove If statement and else statement to have collision automatically detected among objects
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            animator.SetBool("is_attack", true);
             for (int i = 1; i < objects.Count; i++)
             {
                 if (CheckForCollision(objects[0], objects[i], checkMethod))
