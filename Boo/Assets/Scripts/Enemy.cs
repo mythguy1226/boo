@@ -120,25 +120,18 @@ public class Enemy : Movement
         // Pass in Material to Render
         material1.SetPass(0);
 
-        // Left Line
-        GL.Begin(GL.LINES);
-        GL.Vertex(position);
+        GL.Begin(GL.TRIANGLES);
         GL.Color(Color.yellow);
-        GL.Vertex(position + (Quaternion.AngleAxis(30, Vector3.forward) * direction) * 7);
-        GL.Color(Color.yellow);
-        GL.End();
-
-        // Right Line
-        GL.Begin(GL.LINES);
         GL.Vertex(position);
-        GL.Vertex(position + (Quaternion.AngleAxis(-30, Vector3.forward) * direction) * 7);
-        GL.End();
-
-        // Arc
-        GL.Begin(GL.LINE_STRIP);
         GL.Vertex(position + (Quaternion.AngleAxis(30, Vector3.forward) * direction) * 7);
         GL.Vertex(position + direction * 7);
+        GL.End();
+
+        GL.Begin(GL.TRIANGLES);
+        GL.Color(Color.yellow);
+        GL.Vertex(position);
         GL.Vertex(position + (Quaternion.AngleAxis(-30, Vector3.forward) * direction) * 7);
+        GL.Vertex(position + direction * 7);
         GL.End();
     }
 }
