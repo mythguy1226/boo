@@ -16,4 +16,16 @@ public class ChangeLevel : MonoBehaviour
     {
         
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        LoadNextLevel();
+    }
+
+    private void LoadNextLevel()
+    {
+        var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex + 1);
+    }
+        
 }
