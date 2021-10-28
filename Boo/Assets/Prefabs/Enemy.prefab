@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1428971629281044034}
   - component: {fileID: 1428971629281044044}
   - component: {fileID: 3423131763641499640}
+  - component: {fileID: 1976140961}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -96,16 +97,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  stake: {fileID: 0}
+  stake: {fileID: 1624958860881969903, guid: b6b1111c856daec42964ac2cf2b498a6, type: 3}
   mass: 5
-  maxSpeed: 3
+  maxSpeed: 1
   path:
   - {x: 0, y: 0, z: 0}
   - {x: -7, y: 2, z: 0}
   - {x: 5, y: 2, z: 0}
-  - {x: 5, y: -3, z: 0}
-  material1: {fileID: 0}
+  - {x: 5, y: 1, z: 0}
+  material1: {fileID: 2100000, guid: 474a9fe7778b7be4199ac8be0d2c5f6d, type: 2}
 --- !u!58 &3423131763641499640
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428971629281044035}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.4
+--- !u!58 &1976140961
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
