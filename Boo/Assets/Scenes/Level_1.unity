@@ -193,12 +193,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7276276371784924879}
   m_PrefabAsset: {fileID: 0}
---- !u!212 &143315455 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 7276276371641610033, guid: 37f91746461ece24ba7d2390099b97b3,
-    type: 3}
-  m_PrefabInstance: {fileID: 7276276371784924879}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &143315457
 Animator:
   serializedVersion: 3
@@ -230,10 +224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea89d5b6ab80cfd43998a641f457aac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objects:
-  - {fileID: 143315455}
-  - {fileID: 1976140962}
-  - {fileID: 1076099680}
   checkMethod: 0
 --- !u!50 &143315459
 Rigidbody2D:
@@ -1521,7 +1511,7 @@ PrefabInstance:
         type: 3}
       propertyPath: material1
       value: 
-      objectReference: {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 2100000, guid: 474a9fe7778b7be4199ac8be0d2c5f6d, type: 2}
     - target: {fileID: 1428971629281044044, guid: b4110cd7bd17db04c9a12fabc790d245,
         type: 3}
       propertyPath: maxSpeed
@@ -1582,8 +1572,79 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: b4110cd7bd17db04c9a12fabc790d245, type: 3}
+--- !u!1 &861765322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 861765324}
+  - component: {fileID: 861765323}
+  - component: {fileID: 861765325}
+  m_Layer: 0
+  m_Name: LevelExit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &861765323
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861765322}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.22746658, y: 0.51992416}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.2348194, y: 1.9098587}
+  m_EdgeRadius: 0
+--- !u!4 &861765324
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861765322}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -15.64, y: 5.42, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &861765325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861765322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c6e73d74e247e24390f2e7623f06b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &876251916
 GameObject:
   m_ObjectHideFlags: 0
@@ -2320,14 +2381,8 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 675564638}
   m_PrefabAsset: {fileID: 0}
---- !u!212 &1076099680 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 1428971629281044034, guid: b4110cd7bd17db04c9a12fabc790d245,
-    type: 3}
-  m_PrefabInstance: {fileID: 675564638}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &1076099682
-BoxCollider2D:
+--- !u!58 &1076099679
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2340,18 +2395,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5, y: 5}
-    newSize: {x: 0.16, y: 0.16}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 5}
-  m_EdgeRadius: 0
+  m_Radius: 2.4
 --- !u!1 &1368548175
 GameObject:
   m_ObjectHideFlags: 0
@@ -10166,14 +10211,8 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1428971628795080133}
   m_PrefabAsset: {fileID: 0}
---- !u!212 &1976140962 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 1428971629281044034, guid: b4110cd7bd17db04c9a12fabc790d245,
-    type: 3}
-  m_PrefabInstance: {fileID: 1428971628795080133}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &1976140965
-BoxCollider2D:
+--- !u!58 &1976140961
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -10186,18 +10225,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5, y: 5}
-    newSize: {x: 0.16, y: 0.16}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 5}
-  m_EdgeRadius: 0
+  m_Radius: 2.4
 --- !u!1 &2130343259
 GameObject:
   m_ObjectHideFlags: 0
@@ -10355,7 +10384,7 @@ PrefabInstance:
         type: 3}
       propertyPath: material1
       value: 
-      objectReference: {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 2100000, guid: 474a9fe7778b7be4199ac8be0d2c5f6d, type: 2}
     - target: {fileID: 1428971629281044044, guid: b4110cd7bd17db04c9a12fabc790d245,
         type: 3}
       propertyPath: path.Array.data[3].y
@@ -10421,7 +10450,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: b4110cd7bd17db04c9a12fabc790d245, type: 3}
 --- !u!1001 &4471494624382697380
 PrefabInstance:
