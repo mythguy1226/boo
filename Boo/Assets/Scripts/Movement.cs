@@ -39,7 +39,7 @@ public abstract class Movement : MonoBehaviour
         direction = velocity.normalized;
 
         // Make the Sprite look at the direction
-        //transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
     }
 
     // Method for applying forces on an object
