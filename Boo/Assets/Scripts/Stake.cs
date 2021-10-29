@@ -23,6 +23,7 @@ public class Stake : MonoBehaviour
         direction.Normalize();
         velocity = Vector3.zero;
         stakePosition = transform.position;
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
     }
 
     // Update is called once per frame
