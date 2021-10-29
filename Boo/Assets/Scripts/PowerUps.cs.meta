@@ -3,7 +3,19 @@ guid: 0b77208061b77a94cbf521ed43f74e94
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - player: {instanceID: 0}
+  - disguiseSpriteRenderer: {instanceID: 0}
+  - invisibleSpriteRenderer: {instanceID: 0}
+  - invincibleSpriteRenderer: {instanceID: 0}
+  - enemy1: {instanceID: 0}
+  - enemy2: {instanceID: 0}
+  - originalPlayer: {instanceID: 0}
+  - disguiseSprite: {fileID: -2362017571305023331, guid: 164095a4fe0508b468a65b889b2b6e86,
+      type: 3}
+  - playerSprite: {instanceID: 0}
+  - invisibleSprite: {instanceID: 0}
+  - invincibleSprite: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
