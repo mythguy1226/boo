@@ -9,6 +9,7 @@ public class Enemy : Movement
     int pathIndex;
     bool pathReversed;
     bool canShoot;
+    Animator animator;
 
     // Material Fields
     public Material material1;
@@ -21,6 +22,7 @@ public class Enemy : Movement
         pathReversed = false;
         canShoot = true;
         base.Start();
+        animator = GetComponent<Animator>();
     }
 
     // Method for Steering the Zombie
@@ -82,6 +84,7 @@ public class Enemy : Movement
             // If player is detected check if the enemy can shoot
             if (canShoot)
             {
+                animator.SetBool("is_attack", true);
                 GameObject stakeObject = Instantiate(stake, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                 stakeObject.GetComponent<Stake>().player = player;
                 stakeObject.GetComponent<Stake>().manager = GameManager.manager;
@@ -89,6 +92,16 @@ public class Enemy : Movement
                 Invoke("SetCanShoot", 1.0f); // Cooldown for shooting
             }
         }
+
+        if (GetVelocity().y > 0) animator.SetBool("is_up", true);
+        else animator.SetBool("is_up", false);
+        if (GetVelocity().y < 0) animator.SetBool("is_down", true);
+        else animator.SetBool("is_down", false);
+        if (GetVelocity().x > 0) animator.SetBool("is_right", true);
+        else animator.SetBool("is_right", false);
+        if (GetVelocity().x < 0) animator.SetBool("is_left", true);
+        else animator.SetBool("is_left", false);
+        
         base.Update();
     }
 
